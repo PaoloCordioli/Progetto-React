@@ -7,7 +7,7 @@ class App extends Component {
     super(props)
     this.state = {
       value: "",
-      lista: []
+      lista: ["Studiare italiano", "Fare react"]
     }
   }
 
@@ -17,23 +17,27 @@ class App extends Component {
   }
 
   save = () => {
-     this.setState({ lista: this.state.lista.concat(this.state.value) })
+    this.setState({ lista: this.state.lista.concat(this.state.value) })
   }
 
   render() {
     return (
-      <div style={{marginLeft : '20px'}}>
-        <h1 style={{textAlign: 'center' }}>Todo List</h1>
+      <div style={{ marginLeft: '20px' }}>
+        <h1 style={{ textAlign: 'center' }}>Todo List</h1>
         <div>
           <ul>
             {this.state.lista.map(item => (
-              <li key={item} > {item}</li>
+              <li className="list-group-item ">
+                <div> {item}
+                  <button type="button" className="close" > &times; </button>
+                </div>
+              </li>
             ))}
           </ul>
         </div>
         <form>
-          <input type="text" onChange={this.getText}></input> <br></br> <br></br>
-          <button type="button" onClick={this.save}>Aggiungi</button>
+          <input type="text"  placeholder="Add a new todo..." onChange={this.getText}></input> <br></br> <br></br>
+          <button type="button" onClick={this.save}>Add</button>
         </form>
       </div>
     );
