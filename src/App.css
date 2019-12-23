@@ -1,8 +1,4 @@
-.list-group-item{
-    margin-right: 80%;
+.header{
+  text-align: center;
+  margin:  auto;
 }
-
-form{
-  margin-left: 2.6%;
-}
-
