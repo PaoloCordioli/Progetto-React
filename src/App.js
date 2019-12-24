@@ -5,7 +5,7 @@ import './App.css';
 import TodoList from './TodoList';
 
 class App extends Component {
-  render() {
+  render() { // metodo che visualizza un titolo e richiama la classe TodoList
     return (
       <div className="header">
         <h1 className="title">Todo List</h1>

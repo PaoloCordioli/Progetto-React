@@ -6,7 +6,7 @@ import ViewTodo from './ViewTodo';
 
 
 class TodoList extends Component {
-    constructor(props) {
+    constructor(props) { // state contenente l'array di item inseriti dall'utente
         super(props);
         this.state = {
             items: []
@@ -16,7 +16,7 @@ class TodoList extends Component {
         this.deleteItem = this.deleteItem.bind(this);
     }
 
-    componentWillMount() {
+    componentWillMount() { //funzione ,eseguita prima di caricare questo componente, che carica la lista salvata nel localStoraage
         let items = []
         const keys = Object.keys(localStorage)
         keys.forEach(e => {
@@ -25,7 +25,7 @@ class TodoList extends Component {
         this.setState({items : items})
     }
 
-    addItem = (e) => {
+    addItem = (e) => { // funzione che aggiunge un item allo state el localStorage se l'input non è vuoto
         if (this.inputElement.value !== "") {
             var newItem = {
                 text: this.inputElement.value,
@@ -43,7 +43,7 @@ class TodoList extends Component {
         e.preventDefault()
     }
 
-    deleteItem = (key) => {
+    deleteItem = (key) => { // funzione che rimuove un item dallo state e dal localStorage
         let filtered = this.state.items.filter((item) => {
             return (item.key !== key)
         })
@@ -53,7 +53,7 @@ class TodoList extends Component {
         localStorage.removeItem(key)
     }
 
-    render() {
+    render() { //metodo che visualizza il form e richiama la classe ViewTodo
         return (
             <div className="todoListMain">
                 <div className="header">

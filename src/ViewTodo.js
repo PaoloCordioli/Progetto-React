@@ -8,16 +8,16 @@ class ViewTodo extends Component {
         this.createLi = this.createLi.bind(this);
     }
 
-    delete = (key) => {
+    delete = (key) => { // funzione che richiama la funzione deleteItem nella classe TodoList grazie alle props
         this.props.delete(key)
     }
 
-    createLi = (item) => {
+    createLi = (item) => { // funzione che ritorna un tag <li> contenente il testo inserito dall'utente e un bottone per eliminarlo
         return <li key={item.key}> {item.text}<button type="button" className="close"
             onClick={() => this.delete(item.key)}>&times; </button></li>
     }
 
-    render() {
+    render() { // metodo che visualizza l'intera lista itireando la lista di items e per ogni item crea un tag <li> grazie alla funzione createLi
         let listItems = this.props.items.map(this.createLi)
         return (
             <ul className="list">
