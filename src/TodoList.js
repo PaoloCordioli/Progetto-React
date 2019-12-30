@@ -53,6 +53,13 @@ class TodoList extends Component {
         localStorage.removeItem(key)
     }
 
+    editItem = (key) => { // funzione che permette di modificare un item inserito
+        const selectedItem = this.state.items.find(item => item.key === key)
+        this.deleteItem(key)
+        this.inputElement.value = selectedItem.text 
+        this.inputElement.focus()
+    }
+
     render() { //metodo che visualizza il form e richiama la classe ViewTodo
         return (
             <div className="todoListMain">
@@ -62,7 +69,7 @@ class TodoList extends Component {
                         <button type="submit"> <strong>Add</strong></button>
                     </form>
                 </div>
-                <ViewTodo items={this.state.items} delete={this.deleteItem} />
+                <ViewTodo items={this.state.items} delete={this.deleteItem} edit={this.editItem} />
             </div>
         )
     }
