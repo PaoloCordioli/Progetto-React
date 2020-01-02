@@ -36,3 +36,13 @@
   margin-bottom: 15px;
   border-radius: 5px;
   }
+
+.todoListMain .done {
+    color: limegreen;
+}
+
+.todoListMain .undone {
+  color: red;
+  text-decoration: line-through;
+}
+

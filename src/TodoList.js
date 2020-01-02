@@ -14,6 +14,8 @@ class TodoList extends Component {
 
         this.addItem = this.addItem.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
+        this.changeDone = this.changeDone.bind(this);
+        this.editItem = this.editItem.bind(this);
     }
 
     componentWillMount() { //funzione ,eseguita prima di caricare questo componente, che carica la lista salvata nel localStoraage
@@ -29,7 +31,8 @@ class TodoList extends Component {
         if (this.inputElement.value !== "") {
             var newItem = {
                 text: this.inputElement.value,
-                key: Math.random()
+                key: Math.random(),
+                done: true
             };
 
             this.setState((prevState) => {
@@ -60,6 +63,16 @@ class TodoList extends Component {
         this.inputElement.focus()
     }
 
+    changeDone = (key) => { //funzione per cambiare il valore done degli items
+        const item = this.state.items
+        item.forEach(e => {
+            if(e.key === key)
+                e.done = !e.done
+        });
+
+        this.setState({ items : item})
+    }
+
     render() { //metodo che visualizza il form e richiama la classe ViewTodo
         return (
             <div className="todoListMain">
@@ -69,7 +82,7 @@ class TodoList extends Component {
                         <button type="submit"> <strong>Add</strong></button>
                     </form>
                 </div>
-                <ViewTodo items={this.state.items} delete={this.deleteItem} edit={this.editItem} />
+                <ViewTodo items={this.state.items} delete={this.deleteItem} edit={this.editItem} change={this.changeDone}/>
             </div>
         )
     }
